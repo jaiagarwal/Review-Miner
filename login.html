@@ -7,17 +7,28 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <!DOCTYPE HTML>
 <html>
 <head>
-<title>Modern an Admin Panel Category Flat Bootstarp Resposive Website Template | Login :: w3layouts</title>
+<title>Review Miner</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="keywords" content="Modern Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template, 
-Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
+<meta name="keywords" content="Review Miner" />
 <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
  <!-- Bootstrap Core CSS -->
 <link href="css/bootstrap.min.css" rel='stylesheet' type='text/css' />
 <!-- Custom CSS -->
 <link href="css/style.css" rel='stylesheet' type='text/css' />
 <link href="css/font-awesome.css" rel="stylesheet"> 
+<style type="text/css">
+  .app-cam #login-form input[type="text"],.app-cam #login-form input[type="password"]
+  {
+    color:#EFEFEF;
+  }
+  input[type="checked"]
+  {
+    zoom: 1.5;
+    margin-top: 1px;
+    margin-left: -15px;
+  }
+</style>
 <!-- jQuery -->
 <script src="js/jquery.min.js"></script>
 <!----webfonts--->
@@ -31,10 +42,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <a href="index.html"><img src="images/logo.png" alt=""/></a>
   </div>
   <div class="app-cam" style="margin-top:0px;">
-    <form>
+    <form id="login-form">
     <h2 class="form-heading" style="padding:1em 0px;">login</h2>
-		<input type="text" class="text" value="E-mail address" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'E-mail address';}">
-		<input type="password" value="Password" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Password';}">
+		<input type="text" class="text" placeholder="Username" value="">
+		<input type="password" placeholder="Password" value="">
 		<div class="submit"><input type="submit" onclick="myFunction()" value="Login"></div>
 		<!-- <div class="login-social-link">
           <a href="index.html" class="facebook">
@@ -52,12 +63,32 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	</form>
   <div style="text-align:center;position:relative;">
     <div style="position:absolute;top:19px;height: 2px;width: 100%;background-color:#06D995;"></div>
-    <div style="position:relative;border: 2px solid #06D995;display: inline-block;border-radius: 50%;background-color: #222224;color: #FFFFFF;height: 40px;width: 40px;line-height: 35px;">OR</div>
-    <div class="submit" style="margin:1em 0;"><input type="submit" onclick="myFunction()" value="Guest Login"></div>
+    <div style="position:relative;border: 2px solid #06D995;display: inline-block;border-radius: 50%;background-color: #222224;color: #EEE;height: 40px;width: 40px;line-height: 35px;">OR</div>
+    <div class="submit" style="margin:1em 0;"><input type="submit" onclick="guestlogin()" value="Guest Login"></div>
   </div>
   </div>
    <!-- <div class="copy_layout login">
       <p>Copyright &copy; 2015 Modern. All Rights Reserved | Design by <a href="http://w3layouts.com/" target="_blank">W3layouts</a> </p>
    </div> -->
+<script type="text/javascript">
+  function guestlogin(){
+    // window.location.href = "graphs.html";
+    cool();
+  }
+
+  function cool()
+  {
+    $.ajax({
+      url:"http://13.76.31.245/test/",
+      method:"GET",
+      success:function(response){
+        alert(response);
+      },
+      error:function(){
+        alert("error");
+      },
+    })
+  }
+</script>
 </body>
 </html>
