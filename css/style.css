@@ -1469,10 +1469,13 @@ div.checker input {
 .icon-state-warning {
   color: rgb(6, 217, 149);
 }
-.table > thead > tr > th, .table > tbody > tr > th, .table > tfoot > tr > th, .table > thead > tr > td, .table > tbody > tr > td, .table > tfoot > tr > td {
+.table > thead > tr > th, .table > tbody > tr > th, .table > tfoot > tr > th, .table > thead > tr > td, .table > tfoot > tr > td {
   font-size: 0.85em;
-  color: #999;
+  color: #333;
 } 
+.table > tbody > tr > td{
+  color: #555;
+}
 .mailbox-content table tbody tr:hover {
   background: #FAFAFA;
 }
@@ -2777,6 +2780,7 @@ span.btn_7{
 
 }
 
+
 .review_cont,.review_col,.review_type{display: inline-block;}
 .review_cont{margin:7px;}
 .review_col{
@@ -2791,4 +2795,29 @@ span.btn_7{
 /*----------LOADER----*/
 .loader-fb {
   display: none;
+}
+table > thead > tr > th{
+  font-size: 0.9em !important;
+}
+table > tbody > tr > th,table > tbody > tr > td,table > thead > tr > th{
+  vertical-align: middle !important;
+  text-align: center  !important;
+}
+.uppercas{
+  text-transform: uppercase;
+}
+
+.greenpg{
+  color:#5CB85C;
+  font-size: 2.5em;
+}
+i.greenpg,i.redpg{
+  height: 2em !important;
+  width: 2em !important;
+  line-height: 2em !important;
+  font-size: 2em;
+}
+.redpg{
+  color:#D9534F;
+  font-size: 2.5em;
 }
