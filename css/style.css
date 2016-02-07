@@ -223,7 +223,7 @@ body a{
   font-family: 'Lato', sans-serif;;
 }
 nav.top1.navbar.navbar-default.navbar-static-top {
-  background-color:#3fb0ac;
+  background-color:#3FA4B0;
   font-family: 'Lato', sans-serif;;
 }
 .navbar-default .navbar-brand {
@@ -2092,7 +2092,7 @@ body#login{
   padding: 10px 15px;
   width: 100%;
   border: none;
-  background: #3fb0ac;
+  background: #3FA4B0;
   border-radius: 2px;
   -webkit-border-radius: 2px;
   -moz-border-radius: 2px;
