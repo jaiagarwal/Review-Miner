@@ -2782,14 +2782,14 @@ span.btn_7{
 
 
 .review_cont,.review_col,.review_type{display: inline-block;}
-.review_cont{margin:7px;}
+/*.review_cont{margin:7px;}*/
 .review_col{
   height: 20px;
   width: 20px;
 }
 .review_type{
   vertical-align: top;
-  padding: 0px 5px;
+  padding: 0px 4px 0px 2px;
 }
 
 /*----------LOADER----*/

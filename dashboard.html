@@ -12,7 +12,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="keywords" content="Modern Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template, 
 Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
-<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+<script type="application/x-javascript"> /*addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); }*/ </script>
  <!-- Bootstrap Core CSS -->
 <link href="css/bootstrap.min.css" rel='stylesheet' type='text/css' />
 <!-- Custom CSS -->
@@ -169,29 +169,15 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                         </tr>
                                     </thead>
                                     <tbody id="ftbody">
-                                        <tr>
-                                            <th scope="row">MONDAY</th>
-                                            <td></td>
-                                            <td></td>
-                                        </tr>
-                                        <tr>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                        </tr>
-                                        <tr>
-                                            <th class="beech_mein uppercas">WEDNESDAY</th>
-                                            <td class="greenpg"><i class="fa fa-thumbs-o-up greenpg"></i>73</td>
-                                            <td class="redpg"><i class="fa fa-thumbs-o-down redpg"></i>73</td>
-                                        </tr>
+                                        
                                     </tbody>
                                 </table>
                             </div>
                             
                         </div>       
                         <div class="box_piechart link_det_cont" style="display:none;">
-                            <h2 class="form-heading" style="padding:1em 1em;text-align:left;border-bottom:1px solid #ddd;"><div class="new_left" style="display:inline-block;float:left;">Pie-Chart</div>
-                            <div class="new_right" style="display:inline-block;float:right;"><div class="review_col" style="background-color:#F0AD4E;"></div><div class="review_type" style="font-size:0.6em;line-height:2em;">Overall: <span id="overallscore" style="font-size:2.5em;vertical-align:middle;">40</span></div></div></h2>
+                            <h2 class="form-heading" style="padding:1em 1em;text-align:left;border-bottom:1px solid #ddd;"><div class="new_left">Pie-Chart</div>
+                            </h2>
                             
                             <div class="col-md-6 grid_2  col_1" style="text-align:center;"><div class="grid_1">
                                 <canvas id="pie" height="300" width="400" style="width: 400px; height: 300px;"></canvas>
@@ -200,11 +186,14 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                             <div class="review_cont"><div class="review_col" style="background-color:#5CB85C;"></div><div class="review_type">Positive</div></div>
                             <div class="review_cont"><div class="review_col" style="background-color:#337AB7;"></div><div class="review_type">Neutral</div></div>
                             <div class="review_cont"><div class="review_col" style="background-color:#D9534F;"></div><div class="review_type">Negative</div></div>
+                            <div style="padding:1em  0;">
+                                <div class="review_col" style="background-color:#F0AD4E;padding:5px;"></div><div class="review_type" style="font-size:1em;line-height:1em;">Overall Score: <span id="overallscore" style="font-size:1.2em;vertical-align:middle;"></span></div>
+                            </div>
                             
                             </div>
                         </div>
                         <div class="box_bargraph link_det_cont" style="display:none;">
-                            <h2 class="form-heading new_left" style="padding:1em 1em;text-align:left;border-bottom:1px solid #ddd;">histograms</h2>
+                            <h2 class="form-heading new_left" style="padding:1em 1em;text-align:left;border-bottom:1px solid #ddd;">Histograms</h2>
                             <div class="col-md-6 grid_2  col_1" style="text-align:center;"><div class="grid_1">
                                 <canvas id="bar" height="300" width="400" style="width: 400px; height: 300px;"></canvas>
                             </div></div>
@@ -227,7 +216,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         $('.error-box').hide();
         var link_dat={"url" : $('#link-form input[type="text"]').val(),
                        "website" : $('#link-form input[type="radio"]:checked').parent().parent().index()+1  };
-        console.log(link_dat);
+        // console.log(link_dat);
         if(link_dat && link_dat["url"]!=""){
             $('#link_search').addClass("det_open").delay(300).fadeOut(0);
             $('#link_det_cont').fadeIn(300);
@@ -274,7 +263,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     pieData[0]["value"]=pied[1];
                     pieData[1]["value"]=pied[2];
                     pieData[2]["value"]=pied[3];
-                    $('#overallscore').html(" "+pied[0]);
+                    if(pied[0]>=0)
+                        $('#overallscore').html(" +"+ ((parseInt(pied[0]*10000))/100) );
+
                     new Chart(document.getElementById("pie").getContext("2d")).Pie(pieData);
                     new Chart(document.getElementById("bar").getContext("2d")).Bar(barChartData);
 
@@ -295,7 +286,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         $(this).find("div.tiles-body").removeClass("blue1").addClass("red1");
 
         var num = $(this).parent().index();
-        console.log(num,$('.link_det_cont:nth-child('+(num)+')'));
+        // console.log(num,$('.link_det_cont:nth-child('+(num)+')'));
         $($('.link_det_cont')[num]).fadeIn();
 
     });
