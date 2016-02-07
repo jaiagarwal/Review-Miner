@@ -17,18 +17,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <!-- Custom CSS -->
 <link href="css/style.css" rel='stylesheet' type='text/css' />
 <link href="css/font-awesome.css" rel="stylesheet"> 
-<style type="text/css">
-  .app-cam #login-form input[type="text"],.app-cam #login-form input[type="password"]
-  {
-    color:#EFEFEF;
-  }
-  input[type="checked"]
-  {
-    zoom: 1.5;
-    margin-top: 1px;
-    margin-left: -15px;
-  }
-</style>
+
 <!-- jQuery -->
 <script src="js/jquery.min.js"></script>
 <!----webfonts--->
@@ -43,10 +32,11 @@ License URL: http://creativecommons.org/licenses/by/3.0/
   </div>
   <div class="app-cam" style="margin-top:0px;">
     <form id="login-form">
-    <h2 class="form-heading" style="padding:1em 0px;">login</h2>
-		<input type="text" class="text" placeholder="Username" value="">
-		<input type="password" placeholder="Password" value="">
-		<div class="submit"><input type="submit" onclick="myFunction()" value="Login"></div>
+    <h2 class="form-heading" style="padding:1em 0px;">Login</h2>
+		<input type="text" name="login_username" class="text" placeholder="Username" value="">
+		<input type="password" name="login_password" placeholder="Password" value="">
+    <div class="submit"><input type="submit" value="Login"></div>
+    <div  class="error-box col_3 col_3" style="width:100%;"></div>                            
 		<!-- <div class="login-social-link">
           <a href="index.html" class="facebook">
               Facebook
@@ -62,8 +52,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 		</ul>
 	</form>
   <div style="text-align:center;position:relative;">
-    <div style="position:absolute;top:19px;height: 2px;width: 100%;background-color:#06D995;"></div>
-    <div style="position:relative;border: 2px solid #06D995;display: inline-block;border-radius: 50%;background-color: #222224;color: #EEE;height: 40px;width: 40px;line-height: 35px;">OR</div>
+    <div style="position:absolute;top:19px;height: 2px;width: 100%;background-color:#173E43;"></div>
+    <div style="position: relative; border: 2px solid #173E43; display: inline-block; border-radius: 50%; color: #F7FCFF; height: 40px; width: 40px; font-weight: bold; line-height: 35px; background: #173E43;">OR</div>
     <div class="submit" style="margin:1em 0;"><input type="submit" onclick="guestlogin()" value="Guest Login"></div>
   </div>
   </div>
@@ -76,19 +66,36 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     // cool();
   }
 
-  function cool()
-  {
-    $.ajax({
-      url:"http://13.76.31.245/test/",
-      method:"GET",
-      success:function(response){
-        alert(response);
-      },
-      error:function(){
-        alert("error");
-      },
-    })
-  }
+  $('#login-form input[type="submit"]').click(function(e){
+    e.preventDefault();
+    $('.error-box').hide();
+    var sdata = {
+                  'username':$('#login-form input[name="login_username"]').val(),
+                  'password':$('#login-form input[name="login_password"]').val(),
+                };
+    // console.log(sdata);
+    if(sdata["username"]!="" && sdata["username"]!="" )            
+    {
+      $.ajax({
+          url:"http://13.76.31.245/login/",
+          method:"POST",
+          data:sdata,
+          success:function(response){
+            console.log(response);
+            if(response==1)
+              guestlogin();
+            else
+              $('.error-box').html("Invalid Credentials.").show();        
+          },
+          error:function(){
+            // alert("error");
+          },
+        })
+    }
+    else
+      $('.error-box').html("Credentials cannot be empty.").show();        
+
+  });
 </script>
 </body>
 </html>

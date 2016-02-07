@@ -29,29 +29,18 @@ License URL: http://creativecommons.org/licenses/by/3.0/
   <div class="login-logo">
     <a href="index.html"><img src="images/logo.png" alt=""/></a>
   </div>
-  <form class="form-signin app-cam" style="margin-top:0px;">
+  <form id="reg-form" class="form-signin app-cam" style="margin-top:0px;">
       <h2 class="form-heading" style="padding:1em 0px;">Register</h2>
-      <p>Enter your personal details below</p>
-      <input type="text" class="form-control1" placeholder="Full Name" autofocus="">
-      <input type="text" class="form-control1" placeholder="Address" autofocus="">
-      <input type="text" class="form-control1" placeholder="Email" autofocus="">
-      <input type="text" class="form-control1" placeholder="City/Town" autofocus="">
-      <div class="radios">
-        <label for="radio-01" class="label_radio">
-            <input type="radio" checked=""> Male
-        </label>
-        <label for="radio-02" class="label_radio">
-            <input type="radio"> Female
-        </label>
-	  </div>
-	  <p> Enter your account details below</p>
-      <input type="text" class="form-control1" placeholder="User Name" autofocus="">
-      <input type="password" class="form-control1" placeholder="Password">
-      <input type="password" class="form-control1" placeholder="Re-type Password">
+      <p>Enter your details below</p>
+  
+      <input type="text" class="form-control1" name="reg_username" placeholder="User Name" autofocus="" value="">
+      <input type="text" class="form-control1" name="reg_email" placeholder="Email" autofocus="" value="">
+      <input type="password" class="form-control1" name="reg_password" placeholder="Password" value="">
       <label class="checkbox-custom check-success">
-          <input type="checkbox" value="agree this condition" id="checkbox1"> <label for="checkbox1">I agree to the Terms of Service and Privacy Policy</label>
+          <input type="checkbox" value="agree this condition" id="checkbox1"> <label for="checkbox1" style="width: 91%;padding-left: 2%;">I agree to the Terms of Service and Privacy Policy</label>
       </label>
       <button class="btn btn-lg btn-success1 btn-block" type="submit">Submit</button>
+      <div  class="error-box col_3 col_3" style="width:100%;"></div>                            
       <div class="registration">
           Already Registered.
           <a class="" href="login.html">
@@ -59,8 +48,38 @@ License URL: http://creativecommons.org/licenses/by/3.0/
           </a>
       </div>
   </form>
-   <!-- <div class="copy_layout login register">
-      <p>Copyright &copy; 2015 Modern. All Rights Reserved | Design by <a href="http://w3layouts.com/" target="_blank">W3layouts</a> </p>
-   </div> --> 
+ <script type="text/javascript">
+ $('#reg-form').submit(function(e){
+    e.preventDefault();
+    $('.error-box').hide();
+    var sdata = {
+                  'username':$('#reg-form input[name="reg_username"]').val(),
+                  'email':$('#reg-form input[name="reg_email"]').val(),
+                  'password':$('#reg-form input[name="reg_password"]').val(),
+                };
+    console.log(sdata,$('#checkbox1').checked);
+    if(sdata["username"]!="" && sdata["username"]!="" && sdata["email"]!="" && $('#checkbox1').is(':checked') )            
+    {
+      $.ajax({
+          url:"http://13.76.31.245/register/",
+          method:"POST",
+          data:sdata,
+          success:function(response){
+            console.log(response);
+            if(response==1)
+              window.location.href="login.html";
+            else
+              $('.error-box').html("Try a different Wsername/Password.").show();        
+          },
+          error:function(){
+            // alert("error");
+          },
+        });
+    }
+    else
+      $('.error-box').html("Credentials cannot be empty.").show();        
+
+  });
+ </script> 
 </body>
 </html>

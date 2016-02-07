@@ -19,8 +19,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <link href="css/style.css" rel='stylesheet' type='text/css' />
 <!-- Graph CSS -->
 <link href="css/lines.css" rel='stylesheet' type='text/css' />
-<link href="css/font-awesome.css" rel="stylesheet"> 
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 <!-- jQuery -->
+<link href='https://fonts.googleapis.com/css?family=Lato:400,700' rel='stylesheet' type='text/css'>
 <script src="js/jquery.min.js"></script>
 <!----webfonts--->
 <link href='http://fonts.googleapis.com/css?family=Roboto:400,100,300,500,700,900' rel='stylesheet' type='text/css'>
@@ -31,28 +32,34 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <script src="js/metisMenu.min.js"></script>
 <script src="js/custom.js"></script>
 <!-- Graph JavaScript -->
+<script src="js/Chart.js"></script>
+
 <script src="js/d3.v3.js"></script>
 <script src="js/rickshaw.js"></script>
 <style type="text/css">
-    .app-cam #link-form input[type="text"],.app-cam #link-form input[type="password"]
-  {
-    color:#EFEFEF;
-  }
-  .error-box{
-    background-color: #fde0dc;
-    border:1px solid #f69988;
-    padding: 10px;
-    display: none;
-    font-size: 0.7em;
-  }
+    body,html{
+        position: absolute;
+        top:0;
+        bottom: 0;
+        right: 0;
+        left: 0;
+        background: url(./images/bg.jpg)no-repeat;
+        background-size: cover;
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        -ms-background-size: cover;
+    }
+
+  
 </style>
 </head>
 <body>
 <div id="wrapper">
      <!-- Navigation -->
-        <nav class="top1 navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+        <nav class="top1 navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0;border:none;">
             <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <button type="button" class="navbar-toggle rm_nav" data-toggle="collapse" data-target=".navbar-collapse">
                     <span class="sr-only">Toggle navigation</span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
@@ -63,166 +70,29 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             <!-- /.navbar-header -->
             <ul class="nav navbar-nav navbar-right">
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-comments-o"></i><span class="badge">4</span></a>
-                    <ul class="dropdown-menu">
-                        <li class="dropdown-menu-header">
-                            <strong>Messages</strong>
-                            <div class="progress thin">
-                              <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%">
-                                <span class="sr-only">40% Complete (success)</span>
-                              </div>
-                            </div>
-                        </li>
-                        <li class="avatar">
-                            <a href="#">
-                                <img src="images/1.png" alt=""/>
-                                <div>New message</div>
-                                <small>1 minute ago</small>
-                                <span class="label label-info">NEW</span>
-                            </a>
-                        </li>
-                        <li class="avatar">
-                            <a href="#">
-                                <img src="images/2.png" alt=""/>
-                                <div>New message</div>
-                                <small>1 minute ago</small>
-                                <span class="label label-info">NEW</span>
-                            </a>
-                        </li>
-                        <li class="avatar">
-                            <a href="#">
-                                <img src="images/3.png" alt=""/>
-                                <div>New message</div>
-                                <small>1 minute ago</small>
-                            </a>
-                        </li>
-                        <li class="avatar">
-                            <a href="#">
-                                <img src="images/4.png" alt=""/>
-                                <div>New message</div>
-                                <small>1 minute ago</small>
-                            </a>
-                        </li>
-                        <li class="avatar">
-                            <a href="#">
-                                <img src="images/5.png" alt=""/>
-                                <div>New message</div>
-                                <small>1 minute ago</small>
-                            </a>
-                        </li>
-                        <li class="avatar">
-                            <a href="#">
-                                <img src="images/pic1.png" alt=""/>
-                                <div>New message</div>
-                                <small>1 minute ago</small>
-                            </a>
-                        </li>
-                        <li class="dropdown-menu-footer text-center">
-                            <a href="#">View all messages</a>
-                        </li>   
-                    </ul>
-                </li>
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle avatar" data-toggle="dropdown"><img src="images/1.png"><span class="badge">9</span></a>
+                    <a href="#" class="dropdown-toggle avatar" data-toggle="dropdown"><img src="./images/person.png"><span class="badge">9</span></a>
                     <ul class="dropdown-menu">
                         <li class="dropdown-menu-header text-center">
                             <strong>Account</strong>
                         </li>
-                        <li class="m_2"><a href="#"><i class="fa fa-bell-o"></i> Updates <span class="label label-info">42</span></a></li>
-                        <li class="m_2"><a href="#"><i class="fa fa-envelope-o"></i> Messages <span class="label label-success">42</span></a></li>
-                        <li class="m_2"><a href="#"><i class="fa fa-tasks"></i> Tasks <span class="label label-danger">42</span></a></li>
-                        <li><a href="#"><i class="fa fa-comments"></i> Comments <span class="label label-warning">42</span></a></li>
-                        <li class="dropdown-menu-header text-center">
-                            <strong>Settings</strong>
-                        </li>
                         <li class="m_2"><a href="#"><i class="fa fa-user"></i> Profile</a></li>
-                        <li class="m_2"><a href="#"><i class="fa fa-wrench"></i> Settings</a></li>
-                        <li class="m_2"><a href="#"><i class="fa fa-usd"></i> Payments <span class="label label-default">42</span></a></li>
-                        <li class="m_2"><a href="#"><i class="fa fa-file"></i> Projects <span class="label label-primary">42</span></a></li>
-                        <li class="divider"></li>
-                        <li class="m_2"><a href="#"><i class="fa fa-shield"></i> Lock Profile</a></li>
-                        <li class="m_2"><a href="#"><i class="fa fa-lock"></i> Logout</a></li>  
+                        <li class="m_2"><a href="login.html"><i class="fa fa-lock"></i> Logout</a></li>  
                     </ul>
                 </li>
             </ul>
-            <form class="navbar-form navbar-right">
-              <input type="text" class="form-control" value="Search..." onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Search...';}">
-            </form>
             <div class="navbar-default sidebar" role="navigation">
                 <div class="sidebar-nav navbar-collapse">
                     <ul class="nav" id="side-menu">
                         <li>
-                            <a href="index.html"><i class="fa fa-dashboard fa-fw nav_icon"></i>Dashboard</a>
+                            <a href="#"><i class="fa fa-dashboard fa-fw nav_icon"></i>Dashboard</a>
                         </li>
                         <li>
-                            <a href="#"><i class="fa fa-laptop nav_icon"></i>Layouts<span class="fa arrow"></span></a>
-                            <ul class="nav nav-second-level">
-                                <li>
-                                    <a href="grids.html">Grid System</a>
-                                </li>
-                            </ul>
-                            <!-- /.nav-second-level -->
+                            <a href="about.html"><i class="fa fa-info fa-fw nav_icon"></i>About</a>
                         </li>
                         <li>
-                            <a href="#"><i class="fa fa-indent nav_icon"></i>Menu Levels<span class="fa arrow"></span></a>
-                            <ul class="nav nav-second-level">
-                                <li>
-                                    <a href="graphs.html">Graphs</a>
-                                </li>
-                                <li>
-                                    <a href="typography.html">Typography</a>
-                                </li>
-                            </ul>
-                            <!-- /.nav-second-level -->
+                            <a href="login.html"><i class="fa fa-sign-out fa-fw nav_icon"></i>Sign Out</a>
                         </li>
-                        <li>
-                            <a href="#"><i class="fa fa-envelope nav_icon"></i>Mailbox<span class="fa arrow"></span></a>
-                            <ul class="nav nav-second-level">
-                                <li>
-                                    <a href="inbox.html">Inbox</a>
-                                </li>
-                                <li>
-                                    <a href="compose.html">Compose email</a>
-                                </li>
-                            </ul>
-                            <!-- /.nav-second-level -->
-                        </li>
-                        <li>
-                            <a href="widgets.html"><i class="fa fa-flask nav_icon"></i>Widgets</a>
-                        </li>
-                         <li>
-                            <a href="#"><i class="fa fa-check-square-o nav_icon"></i>Forms<span class="fa arrow"></span></a>
-                            <ul class="nav nav-second-level">
-                                <li>
-                                    <a href="forms.html">Basic Forms</a>
-                                </li>
-                                <li>
-                                    <a href="validation.html">Validation</a>
-                                </li>
-                            </ul>
-                            <!-- /.nav-second-level -->
-                        </li>
-                        <li>
-                            <a href="#"><i class="fa fa-table nav_icon"></i>Tables<span class="fa arrow"></span></a>
-                            <ul class="nav nav-second-level">
-                                <li>
-                                    <a href="basic_tables.html">Basic Tables</a>
-                                </li>
-                            </ul>
-                            <!-- /.nav-second-level -->
-                        </li>
-                        <li>
-                            <a href="#"><i class="fa fa-sitemap fa-fw nav_icon"></i>Css<span class="fa arrow"></span></a>
-                            <ul class="nav nav-second-level">
-                                <li>
-                                    <a href="media.html">Media</a>
-                                </li>
-                                <li>
-                                    <a href="login.html">Login</a>
-                                </li>
-                            </ul>
-                            <!-- /.nav-second-level -->
-                        </li>
+                        
                     </ul>
                 </div>
                 <!-- /.sidebar-collapse -->
@@ -230,77 +100,87 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             <!-- /.navbar-static-side -->
         </nav>
 
-        <div id="page-wrapper">
-            <div class="graphs">
-                <div class="col-md-9 col-md-offset-1 r3_counter_box col_3">
-                    <div class="app-cam padd" style="margin:0 auto;width:96%;text-align:center;">
-                        <form id="link-form" style="width:100%;";>
-                            <h2 class="form-heading new_left" style="padding:0.5em 0px;text-align:left;">Enter the Product Link</h2>
-                            <input type="text" class="text" placeholder="URL" value="">
-                            <div  class="error-box col_3" style="width:100%;"></div>
-        
-                            <div class="submit" style="max-width:250px;display:inline-block;min-width:200px;"><input type="submit" value="SUBMIT"></div>
-                        </form>
+        <div id="page-wrapper" style="background:transparent;">
+            <div class="graphs" style="background:transparent;">
+                <div id="link_search">
+                    <div class="col-md-9 col-md-offset-1 r3_counter_box col_3">
+                        <div class="app-cam padd" style="margin:0 auto;width:96%;">
+                            <form id="link-form" style="width:100%;";>
+                                <h2 class="form-heading new_left" style="padding:1em 0px;text-align:left;">Enter the Product Link</h2>
+                                <input type="text" class="gen_input" class="text" placeholder="URL" value="">
+                                <div class="form-group">
+                                <h2 class="form-heading new_left" style="padding:0.5em 0px;text-align:left;">Website</h2>
+                                    <div class="link_site">
+                                        <div class="radio-inline"><label><input type="radio"  name="link_site" checked><img src="./images/amazon.png" /></label></div>
+                                        <div class="radio-inline"><label><input type="radio" name="link_site" ><img src="./images/flipkart.png" /></label></div>
+                                    </div>
+                                </div>
+                                <div  class="error-box col_3 col_3" style="width:100%;"></div>
+                                <div style="text-align:center;">
+                                <div class="submit" style="max-width:250px;display:inline-block;min-width:200px;"><input type="submit" value="SUBMIT"></div>
+                                </div>
+                            </form>
+                        </div>
                     </div>
                 </div>
-                <div class="col-md-9 col-md-offset-1 r3_counter_box col_3">
-                    <div class="box_1">
-                        <div class="col-md-4 col-xs-4 col-sm-4" style="padding:15px 10px;">
-                            <a class="tiles_info">
-                                <div class="tiles-head red1">
-                                    <div class="text-center">Features</div>
-                                </div>
-                                <div class="tiles-body red"><i class="fa fa-envelope"></i></div>
-                            </a>
+                <div id="link_det_cont">
+                    <div class="col-md-9 col-md-offset-1 r3_counter_box col_3">
+                        <div class="box_1 link_det_nav">
+                            <div class="col-md-4 col-xs-4 col-sm-4" style="padding:15px 10px;">
+                                <a class="tiles_info">
+                                    <div class="tiles-head red1">
+                                        <div class="text-center">Features</div>
+                                    </div>
+                                    <div class="tiles-body red1"><i class="fa fa-table abs_center"></i></div>
+                                </a>
+                            </div>
+                            <div class="col-md-4 col-xs-4 col-sm-4" style="padding:15px 10px;">
+                                <a class="tiles_info tiles_blue">
+                                    <div class="tiles-head blue1">
+                                        <div class="text-center">PieChart</div>
+                                    </div>
+                                    <div class="tiles-body blue1"><i class="fa fa-pie-chart"></i></div>
+                                </a>
+                            </div>
+                            <div class="col-md-4 col-xs-4 col-sm-4" style="padding:15px 10px;">
+                                <a class="tiles_info tiles_blue">
+                                    <div class="tiles-head blue1">
+                                        <div class="text-center">Bargraph</div>
+                                    </div>
+                                    <div class="tiles-body blue1"><i class="fa fa-bar-chart"></i></div>
+                                </a>
+                            </div>
+                            <div class="clearfix"> </div>
+                        </div>       
+                    </div> 
+                    <div class="col-md-9 col-md-offset-1 r3_counter_box col_3">
+                        <div id="loader" style="text-align:center;padding:1.5em;">
+                                <img src="./images/preloader.gif" height="60">  
                         </div>
-                        <div class="col-md-4 col-xs-4 col-sm-4" style="padding:15px 10px;">
-                            <a class="tiles_info tiles_blue">
-                                <div class="tiles-head tiles_blue1">
-                                    <div class="text-center">PieChart</div>
-                                </div>
-                                <div class="tiles-body blue1"><i class="fa fa-envelope"></i></div>
-                            </a>
+                        <div class="box_feature link_det_cont">
+                            <h2 class="form-heading new_left" style="padding:1em 1em;text-align:left;border-bottom:1px solid #ddd;">Top Features</h2>
+                            
+                            
+                        </div>       
+                        <div class="box_piechart link_det_cont" style="display:none;">
+                            <h2 class="form-heading new_left" style="padding:1em 1em;text-align:left;border-bottom:1px solid #ddd;">Pie-Chart</h2>
+                            <div class="col-md-6 grid_2  col_1" style="text-align:center;"><div class="grid_1">
+                                <canvas id="pie" height="300" width="400" style="width: 400px; height: 300px;"></canvas>
+                            </div></div>
+                            <div class="col-md-6 grid_2  col_1 pie_det" style="text-align:center;">
+                            <div class="review_cont"><div class="review_col" style="background-color:#5CB85C;"></div><div class="review_type">Positive</div></div>
+                            <div class="review_cont"><div class="review_col" style="background-color:#337AB7;"></div><div class="review_type">Neutral</div></div>
+                            <div class="review_cont"><div class="review_col" style="background-color:#D9534F;"></div><div class="review_type">Negative</div></div>
+                            </div>
                         </div>
-                        <div class="col-md-4 col-xs-4 col-sm-4" style="padding:15px 10px;">
-                            <a class="tiles_info tiles_blue">
-                                <div class="tiles-head tiles_blue1">
-                                    <div class="text-center">Bargraph</div>
-                                </div>
-                                <div class="tiles-body blue1"><i class="fa fa-envelope"></i></div>
-                            </a>
+                        <div class="box_bargraph link_det_cont" style="display:none;">
+                            <h2 class="form-heading new_left" style="padding:1em 1em;text-align:left;border-bottom:1px solid #ddd;">histograms</h2>
+                            <div class="col-md-6 grid_2  col_1" style="text-align:center;"><div class="grid_1">
+                                <canvas id="bar" height="300" width="400" style="width: 400px; height: 300px;"></canvas>
+                            </div></div>
                         </div>
-                        <div class="clearfix"> </div>
-                    </div>       
-                </div> 
-                <div class="col-md-9 col-md-offset-1 r3_counter_box col_3">
-                    <div class="box_1">
-                        <div class="col-md-4 col-xs-4 col-sm-4" style="padding:15px 10px;">
-                            <a class="tiles_info">
-                                <div class="tiles-head red1">
-                                    <div class="text-center">Features</div>
-                                </div>
-                                <div class="tiles-body red"><i class="fa fa-envelope"></i></div>
-                            </a>
-                        </div>
-                        <div class="col-md-4 col-xs-4 col-sm-4" style="padding:15px 10px;">
-                            <a class="tiles_info tiles_blue">
-                                <div class="tiles-head tiles_blue1">
-                                    <div class="text-center">PieChart</div>
-                                </div>
-                                <div class="tiles-body blue1">30</div>
-                            </a>
-                        </div>
-                        <div class="col-md-4 col-xs-4 col-sm-4" style="padding:15px 10px;">
-                            <a class="tiles_info tiles_blue">
-                                <div class="tiles-head tiles_blue1">
-                                    <div class="text-center">Bargraph</div>
-                                </div>
-                                <div class="tiles-body blue1">30</div>
-                            </a>
-                        </div>
-                        <div class="clearfix"> </div>
-                    </div>       
-                </div> 
+                    </div>
+                </div>     
             </div>
         </div>    
       <!-- /#page-wrapper -->
@@ -309,18 +189,26 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <!-- Bootstrap Core JavaScript -->
     <script src="js/bootstrap.min.js"></script>
 <script type="text/javascript">
-var link_dat;
+
     $('#link-form input[type="submit"]').click(function(e){
         e.preventDefault();
+        $('.link_det_cont').css({display:"none"});
+        $('#loader').fadeIn();
         $('.error-box').hide();
-        link_dat={"url" : $('#link-form input[type="text"]').val() };
+        var link_dat={"url" : $('#link-form input[type="text"]').val(),
+                       "website" : $('#link-form input[type="radio"]:checked').parent().parent().index()+1  };
+        console.log(link_dat);
         if(link_dat && link_dat["url"]!=""){
+            $('#link_search').addClass("det_open").delay(300).fadeOut(0);
+            $('#link_det_cont').fadeIn(300);
             $.ajax({
                 url:'http://13.76.31.245/scrape/',
                 method:'POST',
                 data: link_dat,
                 success:function(response){
                     alert(response);
+                    $('#loader').css({display:"none"});
+                    $('.link_det_cont').fadeIn();
                 },    
             });
         }
@@ -329,6 +217,65 @@ var link_dat;
             $('.error-box').html("Field cannot be empty").show();        
         }
     });
-</script>    
+
+    $('.link_det_nav .tiles_info').click(function(){
+        $('.link_det_cont').css({display:"none"});
+        $('.red1').addClass("blue1").removeClass("red1");
+        $(this).find("div.tiles-head").removeClass("blue1").addClass("red1");
+        $(this).find("div.tiles-body").removeClass("blue1").addClass("red1");
+
+        var num = $(this).parent().index();
+        // console.log(num);
+        $('.link_det_cont:nth-child('+(num+1)+')').fadeIn();
+
+    });
+</script>
+   <script>
+
+        
+        var pieData = [
+            {
+                value : 30,
+                color : "#5CB85C",
+                label : 'Positive',
+                labelColor : 'white',
+                labelFontSize : '16'
+            },{
+                value : 30,
+                color : "#337AB7",
+                label : 'Neutral',
+                labelColor : 'white',
+                labelFontSize : '16'
+            },
+            {
+                value : 30,
+                color : "#D9534F",
+                label : 'Negative',
+                labelColor : 'white',
+                labelFontSize : '16'
+            }];
+        var barChartData = {
+            labels : ["January","February","March","April","May","June","July"],
+            datasets : [
+                {
+                    fillColor : "#00aced",
+                    strokeColor : "#00aced",
+                    data : [28,48,40,19,96,27,100]
+                },
+                {
+                    fillColor : "#ef553a",
+                    strokeColor : "#ef553a",
+                    data : [65,59,90,81,56,55,40]
+                },
+            ]
+            
+        };
+    new Chart(document.getElementById("bar").getContext("2d")).Bar(barChartData);
+
+    new Chart(document.getElementById("pie").getContext("2d")).Pie(pieData);
+    
+    </script>  <!-- Metis Menu Plugin JavaScript -->
+<script src="js/metisMenu.min.js"></script>
+<script src="js/custom.js"></script>
 </body>
 </html>
