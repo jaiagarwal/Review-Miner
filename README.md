@@ -1,5 +1,5 @@
 ## Review-Miner
-A cross platform application which scrapes reviews from websites (Amazon and Flipkart) and extract features, analyses sentiments and classifies features based on opinion. Easy to use and interactive UI.
+A cross platform application which scrapes reviews from websites (Amazon and Flipkart) and extracts features, analyses sentiments and classifies features based on opinion. Easy to use and interactive UI.
 
 ###Setup:
 1. Install PhoneGap and import the App_UI folder.   
