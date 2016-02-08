@@ -1,4 +1,4 @@
-## Review-Miner &nbsp;[![Codacy Badge](https://api.codacy.com/project/badge/grade/5aef31ab07994327bae3f8c8149d4d7f)](https://www.codacy.com/app/satwik55/Review-Miner)
+## Review-Miner 
 A cross platform application which scrapes reviews from websites (Amazon and Flipkart) and extracts features, analyses sentiments and classifies features based on opinion. Easy to use and interactive UI.
 
 ###Setup:
