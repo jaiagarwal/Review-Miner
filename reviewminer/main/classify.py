@@ -1,8 +1,6 @@
 import nltk
 import random
-from collections import defaultdict
-from nltk.probability import FreqDist, DictionaryProbDist, ELEProbDist, sum_logs
-from nltk.classify.api import ClassifierI
+from nltk.probability import DictionaryProbDist, ELEProbDist, sum_logs
 from nltk.corpus import product_reviews_1
 
 v= product_reviews_1.features('data.txt')
