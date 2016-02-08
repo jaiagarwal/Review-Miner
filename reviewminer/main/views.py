@@ -34,6 +34,8 @@ def test(request):
 def review_func(request):
 	if request.POST:
 		if int(request.POST['website']) == 1:
+			#### AMAZON.COM SCRAPING ####
+			
 			url= request.POST.get('url',False)
 			r_ob = requests.get(url)
 			gaussian = BeautifulSoup(r_ob.content)
@@ -43,6 +45,8 @@ def review_func(request):
 			result= [i.text for i in rev_list]
 			full= str(result)
 		else:
+			###### FLIPKART SCRAPING ####
+
 			url= request.POST.get('url',False)
 			r_ob = requests.get(url)
 			gaussian = BeautifulSoup(r_ob.content)
@@ -50,6 +54,7 @@ def review_func(request):
 			result= [i.text for i in rev_list]
 			full= str(result)
 	else:
+		### TEST URL TAKEN FOR TEST PURPOSE : GET REQUEST ###
 		# url="http://www.amazon.com/Nokia-Lumia-900-Black-16GB/dp/B007P5NHJO"
 		url="http://www.flipkart.com/nokia-lumia-630-dual-sim/p/itme7zdakdtxxmdy?pid=MOBDW52BQYEQNQHG&al=rr4jU3t8xiLfxoSVreiBF8ldugMWZuE7Qdj0IGOOVqtGps%2B5%2BbFNcBLbBYY0ImV%2FholPQluhdKA%3D&ref=L%3A-7980544905708093331&srno=b_1"
 		r_ob = requests.get(url)
@@ -57,6 +62,10 @@ def review_func(request):
 		rev_list = gaussian.find_all("span", {"class": "review-text-full"})
 		result= [i.text for i in rev_list]
 		full= str(result)
+
+
+###########    SENTIMENTAL ANALYSIS ###########
+
 	sentences = tokenize.sent_tokenize(full)
 	sid = SentimentIntensityAnalyzer()
 
@@ -75,7 +84,9 @@ def review_func(request):
 	final= {} 
 	avg = [x/tot for x in sumz] 
 	final['senti'] = avg
-	v= product_reviews_1.features('gauss_data_set.txt') 
+
+########## FEATURE ANALYSIS AND EXTRACTION STARTS HERE    ###########
+	v= product_reviews_1.features('gauss_data_set.txt')   ##INSERT YOUR OWN LABELLED DATASET IN PRODUCT_REVIEWS_1 FOLDER OF NLTK
 	gauss=[]
 	for k in v:
 		if int(k[1])>0:
@@ -95,6 +106,7 @@ def review_func(request):
 			features['%s' % word] = (word in document_words)
 		return features
 
+########### TRAING AND USING NAIVEBAYES CLASSIFIER  ###########
 	featuresets = [(document_features(d), c) for (d,c) in gauss]
 	train_set= featuresets
 	classifier = NaiveBayesClassifier.train(train_set)
@@ -116,14 +128,14 @@ def review_func(request):
 		else:
 			ratio = '%8.1f' % (cpdist[l1, fname].prob(fval) /
 							   cpdist[l0, fname].prob(fval))
-		x = (fname, fval, l1, ratio.strip())
+		x = (fname, fval, l1, ratio.strip())   ########### REMOVING NOISE BELOW ###########
 		if str(x[0]).upper() != 'PHONE' and str(x[0]).upper() != 'MOBILE' and str(x[0]).upper() != 'CUSTOMER':
 			data1.append(x)
 	if data1:
-		data2=[]
+		data2=[]                  
 		for p in data1:
 			if p[0] not in [q[0] for q in data2]:
-				data2.append(p)
+				data2.append(p)                     ###########REMOVING REDUNDANT DATA GENERATED ###########
 		sol=[]
 		# name_list= [q[0] for q in data1]
 		for k in data2:
@@ -140,6 +152,7 @@ def review_func(request):
 
 
 
+####### AUTHENTICATION FUNCTIONS BELOW ###### 
 @csrf_exempt	
 def register(request):
 	if request.POST:
