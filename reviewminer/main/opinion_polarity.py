@@ -7,17 +7,17 @@ sentences = tokenize.sent_tokenize(paragraph)
 sid = SentimentIntensityAnalyzer()
 
 opinion=[]
-sum1=[0.0,0.0,0.0,0.0]
+sum=[0.0,0.0,0.0,0.0]
 
 
 for sentence in sentences:
 	n=0
    	ss = sid.polarity_scores(sentence)
    	for k in sorted(ss):
-   		sum1[n]+=ss[k]
+   		sum[n]+=ss[k]
    		n=n+1
 
-avg = [x/n for x in sum1] 
+avg = [x/n for x in sum] 
 print avg
 
 

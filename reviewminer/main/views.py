@@ -1,16 +1,27 @@
+from django.template import RequestContext
+from django.shortcuts import render, render_to_response, redirect
 from django.views.decorators.csrf import csrf_exempt
+from django.contrib import auth
 from django.contrib.auth.models import User
-from django.contrib.auth import authenticate
-from django.http import HttpResponseRedirect,HttpResponse, JsonResponse
+from django.contrib.auth import authenticate, login
+from django.http import HttpResponseRedirect,Http404,HttpResponse, JsonResponse
+from django.template.loader import get_template
+from django.template import Context
+from django.contrib.auth import logout
+from django.contrib.auth.decorators import login_required
+from django.db import IntegrityError
 import requests
 from bs4 import BeautifulSoup
+import difflib
 import nltk
 import random
-from nltk.probability import FreqDist, DictionaryProbDist, ELEProbDist
+from collections import defaultdict
+from nltk.probability import FreqDist, DictionaryProbDist, ELEProbDist, sum_logs
+from nltk.classify.api import ClassifierI
 from nltk.corpus import product_reviews_1
 from nltk import tokenize
 from nltk.sentiment.vader import SentimentIntensityAnalyzer
-from main import classify
+from main import classify, opinion_polarity
 from nltk import NaiveBayesClassifier
 
 
@@ -24,6 +35,7 @@ def review_func(request):
 	if request.POST:
 		if int(request.POST['website']) == 1:
 			#### AMAZON.COM SCRAPING ####
+			
 			url= request.POST.get('url',False)
 			r_ob = requests.get(url)
 			gaussian = BeautifulSoup(r_ob.content)
@@ -34,6 +46,7 @@ def review_func(request):
 			full= str(result)
 		else:
 			###### FLIPKART SCRAPING ####
+
 			url= request.POST.get('url',False)
 			r_ob = requests.get(url)
 			gaussian = BeautifulSoup(r_ob.content)
@@ -56,6 +69,7 @@ def review_func(request):
 	sentences = tokenize.sent_tokenize(full)
 	sid = SentimentIntensityAnalyzer()
 
+	opinion=[]
 	sumz=[0.0,0.0,0.0,0.0]
 
 	tot=0
@@ -66,6 +80,7 @@ def review_func(request):
 	   	for k in sorted(ss):
 	   		sumz[n]+=ss[k]
 	   		n=n+1
+
 	final= {} 
 	avg = [x/tot for x in sumz] 
 	final['senti'] = avg
@@ -117,7 +132,7 @@ def review_func(request):
 		if str(x[0]).upper() != 'PHONE' and str(x[0]).upper() != 'MOBILE' and str(x[0]).upper() != 'CUSTOMER':
 			data1.append(x)
 	if data1:
-		data2=[]
+		data2=[]                  
 		for p in data1:
 			if p[0] not in [q[0] for q in data2]:
 				data2.append(p)                     ###########REMOVING REDUNDANT DATA GENERATED ###########
@@ -138,7 +153,7 @@ def review_func(request):
 
 
 ####### AUTHENTICATION FUNCTIONS BELOW ###### 
-@csrf_exempt
+@csrf_exempt	
 def register(request):
 	if request.POST:
 		username= str(request.POST['username'])
@@ -146,13 +161,12 @@ def register(request):
 		password= str(request.POST['password'])
 		try:
 			user = User.objects.create_user(username=username, email=email_id, password=password)
-			user.save()
 			return HttpResponse('1')
 		except:
 			return HttpResponse('0')
 
 @csrf_exempt
-def login_user(request):
+def login(request):
 	if request.POST:
 		username= str(request.POST['username'])
 		password= str(request.POST['password'])
