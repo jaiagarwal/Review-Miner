@@ -1,0 +1,101 @@
+<!--
+Author: W3layouts
+Author URL: http://w3layouts.com
+License: Creative Commons Attribution 3.0 Unported
+License URL: http://creativecommons.org/licenses/by/3.0/
+-->
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>Review Miner</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="keywords" content="Review Miner" />
+<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+ <!-- Bootstrap Core CSS -->
+<link href="css/bootstrap.min.css" rel='stylesheet' type='text/css' />
+<!-- Custom CSS -->
+<link href="css/style.css" rel='stylesheet' type='text/css' />
+<link href="css/font-awesome.css" rel="stylesheet"> 
+
+<!-- jQuery -->
+<script src="js/jquery.min.js"></script>
+<!----webfonts--->
+<link href='http://fonts.googleapis.com/css?family=Roboto:400,100,300,500,700,900' rel='stylesheet' type='text/css'>
+<!---//webfonts--->  
+<!-- Bootstrap Core JavaScript -->
+<script src="js/bootstrap.min.js"></script>
+</head>
+<body id="login" style="min-height:100vh;">
+  <div class="login-logo">
+      <a class="navbar-brand" href="index.html" style="float:none;;font-size:2em;text-transform: none;color: #444;">Review Miner</a>
+  </div>
+  <div class="app-cam" style="margin-top:0px;">
+    <form id="login-form">
+    <h2 class="form-heading" style="padding:1em 0px;">Login</h2>
+		<input type="text" name="login_username" class="text" placeholder="Username" value="">
+		<input type="password" name="login_password" placeholder="Password" value="">
+    <div class="submit"><input type="submit" value="Login"></div>
+    <div  class="error-box col_3 col_3" style="width:100%;"></div>                            
+		<!-- <div class="login-social-link">
+          <a href="index.html" class="facebook">
+              Facebook
+          </a>
+          <a href="index.html" class="twitter">
+              Twitter
+          </a>
+    </div> -->
+		<ul class="new" style="margin:0;">
+			<li class="new_left"><p><a href="#">Forgot Password ?</a></p></li>
+			<li class="new_right"><p class="sign">New here ?<a href="register.html"> Sign Up</a></p></li>
+			<div class="clearfix"></div>
+		</ul>
+	</form>
+  <div style="text-align:center;position:relative;">
+    <div style="position:absolute;top:19px;height: 2px;width: 100%;background-color:#173E43;"></div>
+    <div style="position: relative; border: 2px solid #173E43; display: inline-block; border-radius: 50%; color: #F7FCFF; height: 40px; width: 40px; font-weight: bold; line-height: 35px; background: #173E43;">OR</div>
+    <div class="submit" style="margin:1em 0;"><input type="submit" onclick="guestlogin()" value="Guest Login"></div>
+  </div>
+  </div>
+   <!-- <div class="copy_layout login">
+      <p>Copyright &copy; 2015 Modern. All Rights Reserved | Design by <a href="http://w3layouts.com/" target="_blank">W3layouts</a> </p>
+   </div> -->
+<script type="text/javascript">
+  function guestlogin(){
+    window.location.href = "dashboard.html";
+    // cool();
+  }
+
+  $('#login-form input[type="submit"]').click(function(e){
+    e.preventDefault();
+    $('.error-box').hide();
+    var sdata = {
+                  'username':$('#login-form input[name="login_username"]').val(),
+                  'password':$('#login-form input[name="login_password"]').val(),
+                };
+    // console.log(sdata);
+    if(sdata["username"]!="" && sdata["username"]!="" )            
+    {
+      $.ajax({
+          url:"http://13.76.31.245/login/",
+          method:"POST",
+          data:sdata,
+          success:function(response){
+            console.log(response);
+            if(response==1)
+              guestlogin();
+            else
+              $('.error-box').html("Invalid Credentials.").show();        
+          },
+          error:function(){
+            // alert("error");
+          },
+        })
+    }
+    else
+      $('.error-box').html("Credentials cannot be empty.").show();        
+
+  });
+</script>
+</body>
+</html>

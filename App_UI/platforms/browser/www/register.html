@@ -1,0 +1,85 @@
+<!--
+Author: W3layouts
+Author URL: http://w3layouts.com
+License: Creative Commons Attribution 3.0 Unported
+License URL: http://creativecommons.org/licenses/by/3.0/
+-->
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>Review Miner</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="keywords" content="Review Miner" />
+<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+ <!-- Bootstrap Core CSS -->
+<link href="css/bootstrap.min.css" rel='stylesheet' type='text/css' />
+<!-- Custom CSS -->
+<link href="css/style.css" rel='stylesheet' type='text/css' />
+<link href="css/font-awesome.css" rel="stylesheet"> 
+<!-- jQuery -->
+<script src="js/jquery.min.js"></script>
+<!----webfonts--->
+<link href='http://fonts.googleapis.com/css?family=Roboto:400,100,300,500,700,900' rel='stylesheet' type='text/css'>
+<!---//webfonts--->  
+<!-- Bootstrap Core JavaScript -->
+<script src="js/bootstrap.min.js"></script>
+</head>
+<body id="login">
+  <div class="login-logo">
+      <a class="navbar-brand" href="index.html" style="float:none;;font-size:2em;text-transform: none;color: #444;">Review Miner</a>
+  </div>
+  <form id="reg-form" class="form-signin app-cam" style="margin-top:0px;">
+      <h2 class="form-heading" style="padding:1em 0px;">Register</h2>
+      <p>Enter your details below</p>
+  
+      <input type="text" class="form-control1" name="reg_username" placeholder="User Name" autofocus="" value="">
+      <input type="text" class="form-control1" name="reg_email" placeholder="Email" autofocus="" value="">
+      <input type="password" class="form-control1" name="reg_password" placeholder="Password" value="">
+      <label class="checkbox-custom check-success">
+          <input type="checkbox" value="agree this condition" id="checkbox1"> <label for="checkbox1" style="width: 91%;padding-left: 2%;">I agree to the Terms of Service and Privacy Policy</label>
+      </label>
+      <button class="btn btn-lg btn-success1 btn-block" type="submit">Submit</button>
+      <div  class="error-box col_3 col_3" style="width:100%;"></div>                            
+      <div class="registration">
+          Already Registered.
+          <a class="" href="login.html">
+              Login
+          </a>
+      </div>
+  </form>
+ <script type="text/javascript">
+ $('#reg-form').submit(function(e){
+    e.preventDefault();
+    $('.error-box').hide();
+    var sdata = {
+                  'username':$('#reg-form input[name="reg_username"]').val(),
+                  'email':$('#reg-form input[name="reg_email"]').val(),
+                  'password':$('#reg-form input[name="reg_password"]').val(),
+                };
+    console.log(sdata,$('#checkbox1').checked);
+    if(sdata["username"]!="" && sdata["username"]!="" && sdata["email"]!="" && $('#checkbox1').is(':checked') )            
+    {
+      $.ajax({
+          url:"http://13.76.31.245/register/",
+          method:"POST",
+          data:sdata,
+          success:function(response){
+            console.log(response);
+            if(response==1)
+              window.location.href="login.html";
+            else
+              $('.error-box').html("Try a different Wsername/Password.").show();        
+          },
+          error:function(){
+            // alert("error");
+          },
+        });
+    }
+    else
+      $('.error-box').html("Credentials cannot be empty.").show();        
+
+  });
+ </script> 
+</body>
+</html>
