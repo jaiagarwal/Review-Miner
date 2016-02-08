@@ -221,7 +221,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             $('#link_search').addClass("det_open").delay(300).fadeOut(0);
             $('#link_det_cont').fadeIn(300);
             $.ajax({
-                url:'http://127.0.0.1/scrape/',
+                url:'http://127.0.0.1:8000/scrape/',
                 method:'POST',
                 data: link_dat,
                 success:function(response){
